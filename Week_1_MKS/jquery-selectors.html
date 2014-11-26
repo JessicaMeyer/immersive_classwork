@@ -1,0 +1,177 @@
+<html>
+<head>
+  <title>jQuery Selectors</title>
+  <style type="text/css">
+    .item {
+      padding: 8px;
+      width: 200px;
+      background: #ccc;
+    }
+    .item.active {
+      background: #cfc;
+    }
+  </style>
+</head>
+<body>
+
+<form class="new-item">
+  <label>Pre-Filled Name Input: </label><input class="name" type="text" value="Mitch Thomson" />
+  <br />
+  <label>Pre-Filled Price Input: </label>
+  <input type="text" class="price" value="Mitch is $19">
+  <br />
+  <input class="submit" type="submit" value="SUBMIT!"></input>
+</form>
+
+<div id="items">
+  <div class="item">
+    <label>Item One</label>
+    <div class="price">$11</div>
+  </div>
+
+  <div class="item active">
+    <label>Item Two</label>
+    <div class="price">$22</div>
+  </div>
+
+  <div class="item">
+    <label>Item Three</label>
+    <div class="price">$33</div>
+  </div>
+</div>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+
+// TODO
+
+// Exercise #1.1
+// Write a single line of jQuery that selects the div with Item 2
+
+$('.item.active')
+
+// Exercise #1.2
+// Write a single line of jQuery that selects the form element's 
+// second text box.
+
+$('.new-item.price')
+
+// Exercise #2.1
+// In the browser's JavaScript console, write one line of jQuery that grabs 
+// the value of the input box that's prefilled with Mitch Thomson.
+
+// It should return the string "Mitch Thomson"
+
+$('.name').val();
+// "Mitch Thomson"
+
+// Exercise #2.2
+// In the browser's JavaScript console, write one line of jQuery that 
+// grabs the value of the input box that's prefilled with Mitch is $19.
+
+// It should return the string "Mitch is $19"
+
+$('.price').val();
+// "Mitch is $19"
+
+// Exercise #2.3
+// Hint: This code is just like the Grabbing Form Values example above
+
+// Write one line of jQuery that listens for the submit event on the form and responds 
+// by console logging the value of the input box that's prefilled with "Mitch is $19".
+
+// The browser's JavaScript console should log "Mitch is $19" every time the 
+// submit button is pressed.
+
+$('form.new-item').on('submit', function (e) {
+  e.preventDefault();
+
+  var newItemName = $('.price').val();
+  console.log('You entered:', newItemName);
+});
+
+// Exercise #3.1
+// Write one line of jQuery that adds "Buy one, Get one!!" to the 
+// end of the second item div.
+
+$('.item.active').append('<p>Buy one, get one!</p>');
+
+// Exercise #3.2
+// Write one line of jQuery that removes the price from Item 3 (The div with class 
+// price should be removed from Item 3)
+
+$('.price:last').remove();
+
+// Exercise #3.3
+// Write one line of jQuery that appends the div below to Item 3
+
+// <div class="price">$121</div>
+// If you did not remove the price from Item 3 in Exercise 3.2, Item 3 will have two prices.
+
+// $('.item:last.price').append('<div class="price">$121</div>');
+
+$('.item:last').append('<div> $121 </div>');
+
+// Exercise #4.1
+// Write one line of jQuery that changes the width of the first item div 
+// to 60px, then changes the font size of its item price to 25px
+
+// $('.item:first')
+//       .css('width', 60)
+//       .css('font-size', 25)
+//       ;
+
+
+// Exercise #4.2
+// Write one line of jQuery that changes the font size of the input box 
+// prefilled with Mitch Thomson to 30px, then changes its parent container's 
+// background color to lime
+
+$('.name').css('font-size', 30).css('background-color', 'lime')
+
+or 
+
+$('.name[value = "Mitch Thomson"]') 
+      .css('width', 30)
+      ;
+
+$('.new-item').css('background-color', '#8A2BE2');
+
+// Exercise #4.3
+// Write one line of jQuery that changes the background color of the body tag to teal, 
+// then font-size of all Item text (e.g. Item 1, Item 2, etc) to 15px, then height of all 
+// their parent containers to 60px.
+
+// Note: when you select the item text to change its font size, try to specifically select 
+// the text to alter its font size (e.g. its span wrapper if that is what it is contained by) and 
+// not the parent container.
+
+$('body').css('background-color', '#00FFFF');
+$('.item').css('font-size', 15);
+$('#items').css('height', 60);
+
+// Exercise #4.4
+// Hint: This code is almost exactly like the Grabbing Form Values example above
+
+// Write one line of jQuery that listens for the submit event on the form and 
+// responds by appending the value of the input box that's prefilled with "Mitch Thomson" 
+// to the div with id #items.
+
+$('form.new-item').on('submit', function (e) {
+  e.preventDefault();
+
+  var newItemName = $('.name').val();
+  console.log('You entered:', newItemName);
+});
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
