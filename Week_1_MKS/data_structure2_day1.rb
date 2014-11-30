@@ -120,7 +120,7 @@ data.map {|x| x.split("\n") } #each new line  - x represents a line of strings
 # .match(/^\d/) instead of .to_f
 # r[2..-1] - get an array with just the ingredients in it. 
 
-# example
+# example answer 
 
 class Parser 
 

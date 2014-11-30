@@ -9,10 +9,11 @@ end
 
 post '/translate' do
     puts params
+    @word = Piglatin.translate(params[:word])
   erb :result, layout: :layout
 end
 
-post '/test' do
-  puts params
-  @word = params[:word]
-end
+# post '/test' do
+#   puts params
+#   @word = params[:word]
+# end
