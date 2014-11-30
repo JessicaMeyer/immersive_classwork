@@ -1,3 +1,5 @@
+# still working on ... 
+
 require 'pg'
 require 'rest-client'
 
