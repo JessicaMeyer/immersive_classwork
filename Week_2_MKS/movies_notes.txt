@@ -1,0 +1,76 @@
+movies - title, id
+actors - name, id
+join table - movie id, actor id, movie title
+
+From GET request - movies.api.mks.io/
+
+[
+    {
+        "name": "movie",
+        "url": "/movies"
+    },
+    {
+        "name": "actor",
+        "url": "/movies/:movieId/actors"
+    },
+    {
+        "name": "actor",
+        "url": "/actors"
+    },
+    {
+        "name": "movie",
+        "url": "/actors/:actorId/movies"
+    }
+]
+
+From GET request - movies.api.mks.io/movies
+
+[
+    {
+        "title": "Heat",
+        "id": 1
+    },
+    {
+        "title": "Casino",
+        "id": 2
+    },
+    {
+        "title": "Saving Private Ryan",
+        "id": 3
+    },
+    {
+        "title": "The Dark Knight Rises",
+        "id": 4
+    },
+    {
+ ] ... etc
+
+ From GET request - movies.api.mks.io/actors
+
+ [
+    {
+        "name": "Al Pacino",
+        "id": 1
+    },
+    {
+        "name": "Robert DeNiro",
+        "id": 2
+    },
+    {
+        "name": "Tom Sizemore",
+        "id": 3
+    },
+    {
+        "name": "Joe Pesci",
+        "id": 4
+    },
+    {
+        "name": "Sharon Stone",
+        "id": 5
+    },
+    {
+        "name": "Tom Hanks",
+        "id": 6
+    },
+    ] ... etc
+
