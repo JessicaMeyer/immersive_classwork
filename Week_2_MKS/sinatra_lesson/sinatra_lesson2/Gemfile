@@ -4,4 +4,3 @@ gem 'sinatra'
 # gem 'pry-byebug' # for debugging
 gem 'rspec'
 
-# getting an error with pry-byebug so had to comment out in order to get it to work. 
