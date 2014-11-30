@@ -1,0 +1,326 @@
+Restaurant Inspection Data 
+
+In excel columns are: restaurant name, zip code, inspection date, score, address, facility id, process description
+
+In vagrant virtual computer 
+- createdb restaurant_inspection
+- psql restaurant_inspection
+
+Create a table 
+
+psql CREATE TABLE restaurant_inspection_scores (
+	restaurant_name VARCHAR,
+	zip_code VARCHAR,
+	inspection_date VARCHAR,
+	score NUMERIC,
+	address TEXT,
+	facility_id VARCHAR,
+	process_description VARCHAR
+);
+
+\d - see table
+
+Copy data to table
+
+COPY restaurant_inspection_scores FROM '/home/vagrant/code/mks/restaurant_inspection_scores.csv' DELIMITER ',' CSV HEADER;
+
+1) How many zip codes are represented in this dataset?
+
+SELECT COUNT(DISTINCT zip_code) FROM restaurant_inspection_scores;
+
+57
+
+2) What is the breakdown of inspection count by zip_code?
+
+SELECT COUNT(score), zip_code FROM restaurant_inspection_scores GROUP BY zip_code;
+
+// the above counts the number of scores per zip code 
+
+count | zip_code
+-------+----------
+     6 | 78621
+    49 | 78652
+    30 | 78742
+   153 | 78613
+   461 | 78703
+   856 | 78702
+   122 | 78721
+    95 | 78669
+   139 | 78719
+    57 | 78733
+    60 | 78747
+   649 | 78741
+   406 | 78738
+    11 | 78620
+   206 | 78754
+   171 | 78722
+   157 | 78724
+    93 | 78736
+   620 | 78746
+   650 | 78757
+   226 | 78717
+  1453 | 78704
+
+3) Which zipcode had the highest average score?
+
+SELECT zip_code, AVG(score) FROM restaurant_inspection_scores GROUP BY zip_code; // ORDER BY avg desc if needed that in descending order ;
+
+zip_code |         avg
+----------+---------------------
+ 78621    | 96.8333333333333333
+ 78652    | 95.6326530612244898
+ 78742    | 95.2666666666666667
+ 78613    | 92.3725490196078431
+ 78703    | 91.0607375271149675
+ 78702    | 90.7605140186915888
+ 78721    | 91.9426229508196721
+ 78669    | 92.9157894736842105
+ 78719    | 92.3381294964028777
+ 78733    | 92.2631578947368421
+ 78747    | 90.7833333333333333
+ 78741    | 89.4175654853620955
+ 78738    | 92.3596059113300493
+ 78620    | 89.0909090909090909
+ 78754    | 92.8009708737864078
+ 78722    | 91.3333333333333333
+ 78724    | 92.9235668789808917
+ 78736    | 91.3440860215053763
+ 78746    | 92.5693548387096774
+ 78757    | 92.5769230769230769
+ 78717    | 92.2345132743362832
+ 78704    | 91.7563661390227116
+
+4) What is the lowest possible score based on this dataset?
+
+SELECT MIN(score) FROM restaurant_inspection_scores;
+
+  45
+
+
+5) Which establishments scored the lowest?
+
+SELECT score, restaurant_name FROM restaurant_inspection_scores ORDER BY score asc;
+
+score |                    restaurant_name
+-------+-------------------------------------------------------
+    45 | Fran's Hamburgers
+    48 | Los Comales Taqueria
+    50 | Villa Mexico Restaurant
+    50 | Janitzio Mexican Restaurant
+    50 | La Fuentes Restaurant
+    51 | Chinatown Restaurant
+    52 | R.C. Fowlers Bar & Grill
+    52 | Fujian Grand China Buffet
+    53 | Taco Cabana #123
+    53 | Morelia Mexican Grill
+    53 | Chuy Panaderia
+    54 | Stop 71
+    56 | Down In Texas Saloon
+    56 | Veggie Heaven
+    56 | Geisha Sushi House and Grill
+    56 | TC Noodle House
+    57 | Korea House
+    57 | Villa Mexico Restaurant
+    57 | La Catedral Del Marisco #2
+    57 | Sap's Fine Thai Cuisine
+    57 | Buffet Palace
+    57 | Mi Pueblo Meat Market
+
+
+6) Which establishments received the most visits from the inspector?
+
+need to use ... facility_id , counts, restaurant_name 
+
+
+ SELECT COUNT(facility_id), restaurant_name FROM restaurant_inspection_scores GROUP BY restaurant_name ORDER BY count desc;
+
+
+count |                    restaurant_name
+-------+-------------------------------------------------------
+   161 | Subway
+    81 | Thundercloud Subs
+    64 | Pizza Hut
+    64 | Sonic Drive In
+    63 | McDonald's
+    45 | Amy's Ice Cream
+    41 | 7-Eleven
+    36 | Tokyo Gardens Catering
+    36 | Torchy's Tacos
+    36 | Sonic
+    32 | Dairy Queen
+    31 | Stepping Stone School
+    31 | Domino's Pizza
+    30 | My Fit Foods
+    29 | Sunrise Mini Mart
+    28 | Burger King
+    26 | Chick-Fil-A
+    26 | Tino's Greek Cafe
+    26 | Austin's Pizza
+    26 | P. Terry's Burger Stand
+    24 | Short Stop
+    23 | La Michoacana Meat Market
+
+
+Airline on time performance data 
+
+
+In excel columns are: month, airline_id, origin_city_name, dest_city_name, dep_delay_new, arr_delay_new
+
+In vagrant virtual computer 
+- createdb airline_data
+- psql airline_data
+
+Create a table 
+
+psql CREATE TABLE on_time_performance (
+	month INTEGER,
+	airline_id VARCHAR,
+	carrier VARCHAR,
+	origin_city_name VARCHAR,
+	dest_city_name VARCHAR,
+	dep_delay_new NUMERIC,
+	arr_delay_new NUMERIC
+);
+
+1) How many different airlines are represented in this dataset?
+
+SELECT COUNT(DISTINCT airline_id) FROM on_time_perfomance;
+
+14
+
+2) Which airline had the largest quantity of delayed flights? Which had the fewest?
+
+SELECT COUNT(dep_delay_new), carrier FROM on_time_performance WHERE dep_delay_new > 0 GROUP BY carrier ORDER BY count desc;
+
+count | carrier
+-------+---------
+ 57611 | WN
+ 24865 | DL
+ 24091 | EV
+ 20326 | UA
+ 19035 | AA
+ 16919 | OO
+ 13087 | MQ
+ 11941 | US
+  9152 | B6
+  4658 | FL
+  3026 | F9
+  2592 | AS
+  1579 | VX
+  1189 | HA
+
+3) Which departing airport had the highest number of delayed flights? Which had the fewest?
+
+SELECT COUNT(dep_delay_new), origin_city_name FROM on_time_performance GROUP BY origin_city_name ORDER BY count desc;
+
+count |          origin_city_name
+-------+------------------------------------
+ 28420 | Atlanta, GA
+ 23505 | Chicago, IL
+ 22771 | Dallas/Fort Worth, TX
+ 18242 | Houston, TX
+ 18051 | Los Angeles, CA
+ 17293 | Denver, CO
+ 14656 | New York, NY
+ 13141 | San Francisco, CA
+ 13135 | Phoenix, AZ
+ 10835 | Las Vegas, NV
+  9599 | Washington, DC
+  9378 | Charlotte, NC
+  8830 | Orlando, FL
+  8579 | Salt Lake City, UT
+  8239 | Newark, NJ
+  7760 | Minneapolis, MN
+  7663 | Seattle, WA
+  7589 | Boston, MA
+  7212 | Miami, FL
+  6951 | Detroit, MI
+  6775 | Baltimore, MD
+  5875 | San Diego, CA
+
+4) Which arriving airport had the highest number of delayed flights? Which had the fewest?
+
+SELECT COUNT(arr_delay_new), dest_city_name FROM on_time_performance WHERE arr_delay_new > 0 GROUP BY dest_city_name ORDER BY count desc;
+
+count |           dest_city_name
+-------+------------------------------------
+ 13076 | Chicago, IL
+ 12896 | Atlanta, GA
+  9098 | Denver, CO
+  8285 | Dallas/Fort Worth, TX
+  7782 | Houston, TX
+  7456 | Los Angeles, CA
+  6697 | New York, NY
+  5461 | San Francisco, CA
+  4973 | Orlando, FL
+  4892 | Phoenix, AZ
+  4836 | Las Vegas, NV
+  4279 | Washington, DC
+  4059 | Charlotte, NC
+  3659 | Newark, NJ
+  3580 | Fort Lauderdale, FL
+  3546 | Baltimore, MD
+  3491 | Minneapolis, MN
+  3164 | Salt Lake City, UT
+  3118 | Detroit, MI
+  3055 | Boston, MA
+  3052 | Seattle, WA
+  3021 | Miami, FL
+
+5) What was the average number of minutes late across all airlines?
+
+carrier, arr_delay_new
+
+SELECT carrier, AVG(arr_delay_new) FROM on_time_performance GROUP BY carrier; 
+
+or 
+
+SELECT AVG(dep_delay_new) as DelayAverage FROM airline_performance;
+
+carrier |         avg
+---------+---------------------
+ HA      |  4.0347927418012319
+ DL      | 19.9392790730939780
+ EV      | 25.5534690570242074
+ FL      | 16.4275296262534184
+ US      | 10.8702861727734688
+ AS      |  6.5419508587394198
+ VX      |  9.6003795866722902
+ MQ      | 24.1283772556578379
+ B6      | 30.9790715796504509
+ OO      | 14.3922401109756610
+ UA      | 17.2939851438684937
+ WN      | 21.6171422639507255
+ F9      | 25.7453515140782716
+ AA      | 13.4176751847361076
+
+6) What was the average number of minutes late for each airline?
+
+SELECT carrier, AVG(dep_delay_new) FROM airline_performance GROUP BY carrier ORDER BY avg desc;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

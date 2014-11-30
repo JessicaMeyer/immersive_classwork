@@ -1,0 +1,47 @@
+in vagrant - 
+createdb petshop_db
+
+postman get request to -
+pet-shop.api.mks.io
+
+data from get request - 
+
+[
+    {
+        "name": "shop",
+        "url": "/shops"
+    },
+    {
+        "name": "cat",
+        "url": "/shops/:shopId/cats"   --> returns an empty array 
+    },
+    {
+        "name": "dog",
+        "url": "/shops/:shopId/dogs"   -->  returns an empty array
+    }
+]
+
+SHOPS:
+name
+id
+
+
+CATS: 
+shopId
+name
+imageUrl
+adopted
+id
+
+DOGS:
+shopId
+name
+imageUrl
+happiness
+id
+adopted
+
+
+
+
+
