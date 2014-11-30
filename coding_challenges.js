@@ -1,4 +1,5 @@
 // Challenge # 1
+// Flatten an array of arrays in Javascript
 
 array1 = [10,[20, 30], 40]
 array2 = [1, 2, [3], 4,[5, 6]]
@@ -25,7 +26,7 @@ merged.flatten
 // => [1, 2, 3, 4, 5, 6, 10, 20, 30, 40]
 
 // Challenge # 2
-
+// Find the highest frequency character in a given string
 
 function highestFreq (str) {
   var counts = {}
@@ -46,10 +47,7 @@ function highestFreq (str) {
 }
 
 
-
-
-
-// our code - need to finish 
+// our code 
 
 var counts = {};
 var string = "abcdc";
@@ -109,7 +107,7 @@ function alphaCount (alphabet, text) {
 
 console.log(alphaCount( "aBc", "aabbccdd"));
 
-// Gilbert's solution 
+// Gilbert's solution for challenge #3 
 
 // alphabet: "bac", text: "aabbcccdd"
 // target output: 'b:2,a:2,c:3'
@@ -187,3 +185,27 @@ function longestImprovement (numbers) {
   return winner
 }
 
+// Character Sum
+// Given a string of arbitrary size, convert each character into its integer 
+// equivalent and sum the entirety.
+
+function charSum(str) {
+  var a = 0;
+  for(var i = 0; i < str.length; i++) {
+    if(parseInt(str[i])) {
+      a += parseInt(str[i])
+    }
+  }
+  return a;
+}
+
+
+// Gilbert's solution 
+function charSum(str) {
+  var a = 0;
+  for(var i = 0; i < str.length; i++) {
+   var n = parseInt(str[i])
+   if (n) a = a + n
+ }
+return a;
+}
