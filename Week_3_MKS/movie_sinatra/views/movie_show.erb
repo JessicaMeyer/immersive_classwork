@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Movies and Actors </title>
+</head>
+<body>
+
+ <h1><%= @movie['title'] %></h1>
+  <h3><u>Actors</u></h3>
+  <% @actors.each do |actor| %>
+    <a href="/actors/<%= actor['id'] %>"><%= actor['name'] %></a><br>
+  <% end %>
+
+
+</body>
+</html>
+
+
+<!-- 
+On the movie show page, display:
+The movie name
+All the actors that star in the movie. -->
+
