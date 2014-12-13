@@ -1,0 +1,26 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<head>
+    <title>My jQuery Page</title>
+    <script src="jquery-2.1.1.js"></script>
+</head>
+<body>
+
+	
+
+
+
+
+	<script>
+
+	$.ajax({
+	  type: 'GET',
+	  url: 'http://chat.api.mks.io/chats'
+	}).success(function (chats) {
+	  console.log("Got chats:", chats)
+	})
+
+
+	</script>
+</body>
+</html>
