@@ -148,7 +148,7 @@ end
     shop = @db.exec("SELECT * FROM shops WHERE id=$1", [shop_id])
     shop.entries 
     end
-  end
+# end
  
  # show happiest dogs 
 

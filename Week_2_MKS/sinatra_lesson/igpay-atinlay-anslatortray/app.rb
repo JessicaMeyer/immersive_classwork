@@ -9,7 +9,7 @@ end
 
 post '/translate' do
     puts params
-    @word = Piglatin.translate(params[:word])
+    @word = Piglatin.to_pig_latin(params[:word])
   erb :result, layout: :layout
 end
 

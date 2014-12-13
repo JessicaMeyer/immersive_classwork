@@ -1,0 +1,96 @@
+Many to Many 
+
+We are going to use the word "employee" instead of "user".
+
+Open up schema.sql in your text editor. Answer the following questions:
+
+1) How many tables are we creating? What are we naming them?
+
+3 - projects, employees, memberships
+
+2) What columns does the employees have?
+
+id, name, email, salary 
+
+3) What columns does the projects table unique?
+
+id, description, priority
+
+4) What table are you going to have to create later in the lesson?
+
+memberships 
+
+Review exercises: 
+
+5) Write and run a query to select all employees.
+
+SELECT name FROM employees;
+
+name
+---------
+ nick
+ patrick
+ gilbert
+ flip
+ way
+
+
+6) Write and run a query to select all employees that have a salary above $5.
+
+SELECT name FROM employees WHERE salary > 5;
+
+ name
+---------
+ gilbert
+ flip
+ way
+
+ 7) Write and run a query to select all projects.
+
+SELECT description FROM projects;
+
+description
+-----------------------
+ Write Algorithms Book
+ Build Recruit App
+ Rewrite Learn App
+ Company Party
+ Curriculum Review
+
+8) Write and run a query to select all projects with an urgent priority.
+
+SELECT description, priority FROM projects; 
+
+description      | priority
+-----------------------+----------
+ Write Algorithms Book | normal
+ Build Recruit App     | urgent
+ Rewrite Learn App     | normal
+ Company Party         | low
+ Curriculum Review     | urgent
+
+ 9) 
+Write an INSERT query to create a new employee row. 
+Write down the new employee's id. We will refer to this employee as Employee X.
+
+Use SELECT * FROM users to ensure your query worked.
+ 
+Insert example: 
+INSERT INTO movies (name, genre, length)
+VALUES ('Heat', 'Crime', 135);
+
+employee columns inclue - id, name, email, salary
+
+INSERT INTO employees (id, name, email, salary)
+VALUES (5, 'Employee X', 'RonBurgandy@gmail.com', 10);
+
+SELECT name FROM employees;
+
+10) 
+
+
+
+
+
+
+
