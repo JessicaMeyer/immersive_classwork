@@ -1,0 +1,60 @@
+<html>
+<head>
+  <title>Javascript Bare</title>
+  <script src="https://code.jquery.com/jquery-2.1.1.js" type="text/javascript"></script>
+
+</head>
+<body>
+
+<button id='fire-laser'>Fire Laser</button>
+
+<script type="text/javascript">
+  alert('hi');
+</script>
+
+<script>
+// Fix the following code (1 syntax error, 1 logic error) so that the proper result is calculated
+
+var cube = function(x) {
+ return (x * x * x);
+};
+
+var result = cube(3);
+console.log("Result should be 27:" + result);
+</script>
+
+
+<script>
+// Write a function halve such that the following code works:
+
+var halve = function(num) {
+	return (num / 2);
+};
+
+console.log("halve(20) should be 10", halve(20));
+console.log("halve(100) should be 50", halve(100));
+
+
+</script>
+
+<script>
+// Add an html element to a fresh javascript-basic.html page so that the following code works
+// Then change code to use an anonymous function:
+
+var health = 5;
+
+var fireQuadLaser = function() {
+  if (health === 0) {
+    console.log("You're dead.");
+  }
+  else {
+    health = health - 1;
+    console.log('PEW PEW! Your health remaining is ' + health);
+  }
+};
+
+$('#fire-laser').on('click', fireQuadLaser);
+
+</script>
+</body>
+</html>
