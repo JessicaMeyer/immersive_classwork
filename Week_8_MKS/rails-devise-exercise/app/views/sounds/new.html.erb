@@ -1,0 +1,12 @@
+<form action="/sounds" method="post">
+  <label for="title">Title:</label>
+  <input type="text" id="title" name="sound[title]">
+
+  <label for="soundcloud_url">SoundCloud URL:</label>
+  <input type="text" id="soundcloud_url" name="sound[soundcloud_url]">
+
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+
+  <input type="submit" value="submit">
+</form>
+
